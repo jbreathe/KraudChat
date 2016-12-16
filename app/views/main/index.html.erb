@@ -4,39 +4,67 @@
     <button class="send-button">Send</button>
 <% else %>
     <h1>Please login or create an account. It only takes a few seconds.</h1>
-    <%= form_for :session, url: sessions_create_path, method: :get do |user| %>
-        <div>
-          <%= user.label :name %>
-          <%= user.text_field :name, type: 'login', placeholder: 'Login' %>
+    <div class="dropdown">
+      <button id="sign-in-up-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sign in
+      </button>
+      <div class="dropdown-menu" aria-labelledby="sign-in-up-menu">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#signin" role="tab">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#signup" role="tab">Sign up</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="signin" role="tabpanel">
+            <%= form_for :session, url: sessions_create_path, method: :get do |user| %>
+                <div>
+                  <%= user.label :name %>
+                  <%= user.text_field :name, type: 'login', placeholder: 'Login' %>
+                </div>
+                <div>
+                  <%= user.label :password %>
+                  <%= user.password_field :password, type: 'password', placeholder: 'Password' %>
+                </div>
+                <div>
+                  <%= user.submit 'Sign in' %>
+                </div>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="signup" role="tabpanel">
+            <%= form_for :user, url: users_path, method: :post do |user| %>
+                <div>
+                  <%= user.label :name %>
+                  <%= user.text_field :name, type: 'login', placeholder: 'Login' %>
+                </div>
+                <div>
+                  <%= user.label :password %>
+                  <%= user.password_field :password, type: 'password', placeholder: 'Password' %>
+                </div>
+                <div>
+                  <%= user.label :password_confirmation %>
+                  <%= user.password_field :password_confirmation, type: 'password', placeholder: 'Confirm password' %>
+                </div>
+                <div>
+                  <%= user.submit 'Sign up' %>
+                </div>
+            <% end %>
+          </div>
         </div>
-        <div>
-          <%= user.label :password %>
-          <%= user.password_field :password, type: 'password', placeholder: 'Password' %>
-        </div>
-        <div>
-          <%= user.submit 'Sign in' %>
-        </div>
-    <% end %>
-    <%= form_for :user, url: users_path, method: :post do |user| %>
-        <div>
-          <%= user.label :name %>
-          <%= user.text_field :name, type: 'login', placeholder: 'Login' %>
-        </div>
-        <div>
-          <%= user.label :password %>
-          <%= user.password_field :password, type: 'password', placeholder: 'Password' %>
-        </div>
-        <div>
-          <%= user.label :password_confirmation %>
-          <%= user.password_field :password_confirmation, type: 'password', placeholder: 'Confirm password' %>
-        </div>
-        <div>
-          <%= user.submit 'Sign up' %>
-        </div>
-    <% end %>
+      </div>
+    </div>
 <% end %>
 <div class="root">
   <div class="messages-container">
     <%= render @messages %>
   </div>
 </div>
+<script>
+    // чтобы не зкрывался дропдаун по клику на табу
+    $('.dropdown-menu a[data-toggle="tab"]').click(function (e) {
+        e.stopPropagation();
+        $(this).tab('show');
+    });
+</script>

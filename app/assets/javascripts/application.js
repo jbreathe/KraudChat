@@ -10,5 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require masonry.pkgd.min.js
+//= require masonry.pkgd.min
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require bootstrap/util
+//= require bootstrap/tab
+//= require bootstrap/dropdown
 //= require_tree .
