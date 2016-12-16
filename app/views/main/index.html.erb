@@ -1,0 +1,42 @@
+<% if signed_in? %>
+    <h1>Hello, <%= current_user.name %> <%= link_to 'Sign out', sessions_destroy_path %></h1>
+    <input type="text" class="message-input" placeholder="Say something">
+    <button class="send-button">Send</button>
+<% else %>
+    <h1>Please login or create an account. It only takes a few seconds.</h1>
+    <%= form_for :session, url: sessions_create_path, method: :get do |user| %>
+        <div>
+          <%= user.label :name %>
+          <%= user.text_field :name, type: 'login', placeholder: 'Login' %>
+        </div>
+        <div>
+          <%= user.label :password %>
+          <%= user.password_field :password, type: 'password', placeholder: 'Password' %>
+        </div>
+        <div>
+          <%= user.submit 'Sign in' %>
+        </div>
+    <% end %>
+    <%= form_for :user, url: users_path, method: :post do |user| %>
+        <div>
+          <%= user.label :name %>
+          <%= user.text_field :name, type: 'login', placeholder: 'Login' %>
+        </div>
+        <div>
+          <%= user.label :password %>
+          <%= user.password_field :password, type: 'password', placeholder: 'Password' %>
+        </div>
+        <div>
+          <%= user.label :password_confirmation %>
+          <%= user.password_field :password_confirmation, type: 'password', placeholder: 'Confirm password' %>
+        </div>
+        <div>
+          <%= user.submit 'Sign up' %>
+        </div>
+    <% end %>
+<% end %>
+<div class="root">
+  <div class="messages-container">
+    <%= render @messages %>
+  </div>
+</div>

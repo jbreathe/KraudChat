@@ -1,0 +1,58 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* ---- messages-container ---- */
+
+.messages-container {
+  background: #EEE;
+  max-width: 1200px;
+}
+
+/* clearfix */
+.message:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- message-item ---- */
+
+.message-item {
+  width: 200px;
+  height: 100px;
+  float: left;
+  background: #FFF;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+  border-radius: 5px;
+}
+
+.message-item-width-1 {
+}
+
+.message-item-height-1 {
+}
+
+.message-item-width-2 {
+  width: 400px;
+}
+
+.message-item-height-2 {
+  height: 200px;
+}
+
+.message-item-width-3 {
+  width: 600px;
+}
+
+.message-item-height-3 {
+  height: 400px;
+}
